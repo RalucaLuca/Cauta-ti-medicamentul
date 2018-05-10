@@ -7,7 +7,7 @@
   <artifactId>MyApplication</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <name>mywebapp</name>
+  <name>MyApplication</name>
   <url>http://maven.apache.org</url>
   
   	<parent>
