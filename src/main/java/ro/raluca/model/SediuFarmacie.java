@@ -1,4 +1,4 @@
-package ro.raluca;
+package ro.raluca.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

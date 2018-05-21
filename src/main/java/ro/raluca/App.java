@@ -7,6 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
+import ro.raluca.model.Farmacie;
+import ro.raluca.model.Medicament;
+import ro.raluca.model.SediuFarmacie;
+
 @SpringBootApplication // initializaeza si porneste spring boot
 @ServletComponentScan(basePackages={"ro.raluca"})
 
@@ -14,7 +18,7 @@ public class App
 {
     public static void main( String[] args ) throws SQLException
     {
-    	// Afisare farmacii
+    	       // Afisare farmacii
     			Farmacie conexiuneFarmacii = new Farmacie();
     			conexiuneFarmacii.getDataFromFarmacie();
     			System.out.println();
@@ -26,17 +30,17 @@ public class App
     			SediuFarmacie conexiuneSediiFarmacie = new SediuFarmacie();
     			conexiuneSediiFarmacie.getDataFromSediuFarmacie();
     			System.out.println();
-
-    			Medicament conexiuneMedicamente = new Medicament();
-    			// Afisare medicamente din DB
-    			// conex_medicament.conectareDB();
-    			// List<Medicament> medicamenteFromDB = conexiuneMedicamente.getDateFromDB();
-    			// conexiuneMedicamente.displayMedicamente(medicamenteFromDB);
-
-    			// AFISARE MEDICAMENTE DE PE SITE
-    			conexiuneMedicamente.conectareSiteNomenclator();
-    			List<Medicament> medicamenteFromSite = conexiuneMedicamente.getDataFromSite();
-    			conexiuneMedicamente.displayMedicamente(medicamenteFromSite);    	
+//
+//    			Medicament conexiuneMedicamente = new Medicament();
+//    			// Afisare medicamente din DB
+//    			// conex_medicament.conectareDB();
+//    			// List<Medicament> medicamenteFromDB = conexiuneMedicamente.getDateFromDB();
+//    			// conexiuneMedicamente.displayMedicamente(medicamenteFromDB);
+//
+//    			// AFISARE MEDICAMENTE DE PE SITE
+//    			conexiuneMedicamente.conectareSiteNomenclator();
+//    			List<Medicament> medicamenteFromSite = conexiuneMedicamente.getDataFromSite();
+    			//conexiuneMedicamente.displayMedicamente(medicamenteFromSite);    	
     	
     			SpringApplication.run(App.class, args);
         

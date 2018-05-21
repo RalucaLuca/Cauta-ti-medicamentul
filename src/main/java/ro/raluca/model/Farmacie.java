@@ -1,4 +1,4 @@
-package ro.raluca;
+package ro.raluca.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,43 +14,46 @@ public class Farmacie {
 	Connection con = conex.getConnection();
 
 	// DECLARERE VARIABILE
-	private int CUI1;
-	private String nume1;
-	private String site1;
+	private int id_farmacie;
+	private int CUI;
+	private String nume;
+	private String site;
 
 	public Farmacie() {
 	}
 
 	// Constructor cu parametrii
-	public Farmacie(int CUI2, String nume2, String site2) {
-		this.CUI1 = CUI2;
-		this.nume1 = nume2;
-		this.site1 = site2;
+	public Farmacie(int id_farmacie,int CUI2, String nume2, String site2) {
+		this.id_farmacie = id_farmacie;
+		this.CUI = CUI2;
+		this.nume = nume2;
+		this.site = site2;
 	}
 
 	// Getteri si Setteri
-	public int getCUI1() {
-		return CUI1;
+	public int getId_farmacie() {
+		return id_farmacie;
 	}
-
-	public void setCUI1(int cUI1) {
-		CUI1 = cUI1;
+	public void setId_farmacie(int id_farmacie) {
+		this.id_farmacie = id_farmacie;
 	}
-
-	public String getNume1() {
-		return nume1;
+	public int getCUI() {
+		return CUI;
 	}
-
-	public void setNume1(String nume1) {
-		this.nume1 = nume1;
+	public void setCUI(int cUI) {
+		CUI = cUI;
 	}
-
-	public String getSite1() {
-		return site1;
+	public String getNume() {
+		return nume;
 	}
-
-	public void setSite1(String site1) {
-		this.site1 = site1;
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+	public String getSite() {
+		return site;
+	}
+	public void setSite(String site) {
+		this.site = site;
 	}
 
 	// Afisare din DB
@@ -62,11 +65,11 @@ public class Farmacie {
 		System.out.println("Farmacie: ");
 
 		while (rs.next()) {
-			CUI1 = rs.getInt("CUI");
-			nume1 = rs.getString("nume_farmacie");
-			site1 = rs.getString("site");
+			CUI = rs.getInt("CUI");
+			nume = rs.getString("nume_farmacie");
+			site = rs.getString("site");
 
-			System.out.println("CUI: " + CUI1 + "Nume:  " + nume1 + "site:  " + site1);
+			System.out.println("id_farmacie" + id_farmacie + " CUI: " + CUI + " Nume:  " + nume + "site:  " + site);
 		}
 
 	}
@@ -86,4 +89,8 @@ public class Farmacie {
 	 * + rs.getString("telefon")); else System.out.println("Numarul de telefon: ");
 	 * System.out.println(); } }
 	 */
+
+
+
+
 }

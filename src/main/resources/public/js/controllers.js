@@ -1,28 +1,28 @@
-angular.module('app.controllers', []).controller('ShipwreckListController', function($scope, $state, popupService, $window, Shipwreck) {
-  $scope.shipwrecks = Shipwreck.query(); //fetch all shipwrecks. Issues a GET to /api/vi/shipwrecks
+angular.module('app.controllers', []).controller('FarmaciiListController', function($scope, $state, popupService, $window, Farmacie) {
+  $scope.Farmacie = Farmacie.query(); //fetch all shipwrecks. Issues a GET to /api/vi/shipwrecks
 
-  $scope.deleteShipwreck = function(shipwreck) { // Delete a Shipwreck. Issues a DELETE to /api/v1/shipwrecks/:id
+  $scope.deletefarmacie = function(farmacie) { // Delete a Shipwreck. Issues a DELETE to /api/v1/shipwrecks/:id
     if (popupService.showPopup('Really delete this?')) {
-      shipwreck.$delete(function() {
-        $scope.shipwrecks = Shipwreck.query(); 
-        $state.go('shipwrecks');
+      farmacie.$delete(function() {
+        $scope.farmacii = Farmacii.query(); 
+        $state.go('farmacii');
       });
     }
   };
-}).controller('ShipwreckViewController', function($scope, $stateParams, Shipwreck) {
-  $scope.shipwreck = Shipwreck.get({ id: $stateParams.id }); //Get a single shipwreck.Issues a GET to /api/v1/shipwrecks/:id
-}).controller('ShipwreckCreateController', function($scope, $state, $stateParams, Shipwreck) {
-  $scope.shipwreck = new Shipwreck();  //create new shipwreck instance. Properties will be set via ng-model on UI
+}).controller('FarmacieViewController', function($scope, $stateParams, Farmacie) {
+  $scope.farmacie = farmacie.get({ id_farmacie: $stateParams.id_farmacie }); //Get a single shipwreck.Issues a GET to /api/v1/shipwrecks/:id
+}).controller('FarmacieCreateController', function($scope, $state, $stateParams, Farmacie) {
+  $scope.Farmacie = new Farmacie();  //create new shipwreck instance. Properties will be set via ng-model on UI
 
-  $scope.addShipwreck = function() { //create a new shipwreck. Issues a POST to /api/v1/shipwrecks
-    $scope.shipwreck.$save(function() {
-      $state.go('shipwrecks'); // on success go back to the list i.e. shipwrecks state.
+  $scope.addFarmacie = function() { //create a new shipwreck. Issues a POST to /api/v1/shipwrecks
+    $scope.farmacie.$save(function() {
+      $state.go('farmacii'); // on success go back to the list i.e. shipwrecks state.
     });
   };
-}).controller('ShipwreckEditController', function($scope, $state, $stateParams, Shipwreck) {
-  $scope.updateShipwreck = function() { //Update the edited shipwreck. Issues a PUT to /api/v1/shipwrecks/:id
-    $scope.shipwreck.$update(function() {
-      $state.go('shipwrecks'); // on success go back to the list i.e. shipwrecks state.
+}).controller('FarmacieEditController', function($scope, $state, $stateParams, Farmacie) {
+  $scope.updateFarmacie = function() { //Update the edited shipwreck. Issues a PUT to /api/v1/shipwrecks/:id
+    $scope.farmacie.$update(function() {
+      $state.go('farmacii'); // on success go back to the list i.e. shipwrecks state.
     });
   };
 

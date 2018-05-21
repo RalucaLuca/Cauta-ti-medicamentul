@@ -1,4 +1,4 @@
-package ro.raluca;
+package ro.raluca.model;
 
 import java.io.IOException;
 import java.sql.Connection;

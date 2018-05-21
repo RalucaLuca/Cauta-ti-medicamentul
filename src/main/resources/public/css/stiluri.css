@@ -1,0 +1,17 @@
+<style>
+
+.button {
+   display: inline-block;
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+  font-size: 50px;
+  padding: 20px;
+  width: 600px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  display: center;
+ }
+  
+</style>
