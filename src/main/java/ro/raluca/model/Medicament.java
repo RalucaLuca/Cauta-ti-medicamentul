@@ -1,65 +1,168 @@
 package ro.raluca.model;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import ro.raluca.DB.DB;
-
+@Entity
 public class Medicament {
-
-	DB conex = DB.getInstance();
-	Connection con = conex.getConnection();
-
-	Document doc = null;
-
-	private String nume1;
-	private String forma_farmaceutica1;
-	private String doza1;
-	private String volum1;
-	private String cantitate1;
-	private String substanta_activa1;
-	private String cod_ATC1;
-	private String valabilitate1;
-	private String inregistrare1;
-	private String producator1;
-	private String tara1;
-	private String reteta1;
-	private String original1;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id_medicament;
+	private String nume;
+	private String forma_farmaceutica;
+	private String doza;
+	private String volum;
+	private String cantitate;
+	private String substanta_activa;
+	private String codATC;
+	private String valabilitate;
+	private String inregistrare;
+	private String producator;
+	private String tara;
+	private String reteta;
+	private String original;
 
 	// Constructor fara parametrii, campurile au valorile default
 	public Medicament() {
 	}
 
 	// Constructor cu parametrii (toti)
-	public Medicament(String nume2, String forma_farmaceutica2, String doza2, String volum2, String cantitate2,
+	public Medicament(int id_medicament,String nume2, String forma_farmaceutica2, String doza2, String volum2, String cantitate2,
 			String substanta_activa2, String cod_ATC2, String valabilitate2, String inregistrare2, String producator2,
 			String tara2, String reteta2, String original2) {
+		this.id_medicament=id_medicament;
+		this.nume = nume2;
+		this.forma_farmaceutica = forma_farmaceutica2;
+		this.doza = doza2;
+		this.volum = volum2;
+		this.cantitate = cantitate2;
+		this.substanta_activa = substanta_activa2;
+		this.codATC = cod_ATC2;
+		this.valabilitate = valabilitate2;
+		this.inregistrare = inregistrare2;
+		this.producator = producator2;
+		this.tara = tara2;
+		this.reteta = reteta2;
+		this.original = original2;
+	}
+	
 
-		this.nume1 = nume2;
-		this.forma_farmaceutica1 = forma_farmaceutica2;
-		this.doza1 = doza2;
-		this.volum1 = volum2;
-		this.cantitate1 = cantitate2;
-		this.substanta_activa1 = substanta_activa2;
-		this.cod_ATC1 = cod_ATC2;
-		this.valabilitate1 = valabilitate2;
-		this.inregistrare1 = inregistrare2;
-		this.producator1 = producator2;
-		this.tara1 = tara2;
-		this.reteta1 = reteta2;
-		this.original1 = original2;
+	// Afisare medicamente
+	public void displayMedicamente(List<Medicament> medicamente) {
+		for (Medicament medicament : medicamente) {
+			System.out.println(medicament);
+		}
 	}
 
+	// La println se iau elementele automat toString si se afiseaza
+	public String toString() {
+		return this.id_medicament + "[" + this.nume + "[" + this.forma_farmaceutica + ", " + this.doza + ", " + this.volum + ", "
+				+ this.cantitate + ", " + this.substanta_activa + ", " + this.codATC + ", " + this.valabilitate
+				+ ", " + this.inregistrare + ", " + this.producator + ", " + this.tara + ", " + this.reteta + ", "
+				+ this.original + "]";
+	}
+
+	public int getId_medicament() {
+		return id_medicament;
+	}
+	public void setId_medicament(int id_medicament) {
+		this.id_medicament = id_medicament;
+	}
+	public String getNume() {
+		return nume;
+	}
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+	public String getForma_farmaceutica() {
+		return forma_farmaceutica;
+	}
+	public void setForma_farmaceutica(String forma_farmaceutica) {
+		this.forma_farmaceutica = forma_farmaceutica;
+	}
+	public String getDoza() {
+		return doza;
+	}
+	public void setDoza(String doza) {
+		this.doza = doza;
+	}
+	public String getVolum() {
+		return volum;
+	}
+	public void setVolum(String volum) {
+		this.volum = volum;
+	}
+	public String getCantitate() {
+		return cantitate;
+	}
+	public void setCantitate(String cantitate) {
+		this.cantitate = cantitate;
+	}
+	public String getSubstanta_activa() {
+		return substanta_activa;
+	}
+	public void setSubstanta_activa(String substanta_activa) {
+		this.substanta_activa = substanta_activa;
+	}
+	public String getCodATC() {
+		return codATC;
+	}
+	public void setCodATC(String codATC) {
+		this.codATC = codATC;
+	}
+	public String getValabilitate() {
+		return valabilitate;
+	}
+	public void setValabilitate(String valabilitate) {
+		this.valabilitate = valabilitate;
+	}
+	public String getInregistrare() {
+		return inregistrare;
+	}
+	public void setInregistrare(String inregistrare) {
+		this.inregistrare = inregistrare;
+	}
+	public String getProducator() {
+		return producator;
+	}
+	public void setProducator(String producator) {
+		this.producator = producator;
+	}
+	public String getTara() {
+		return tara;
+	}
+	public void setTara(String tara) {
+		this.tara = tara;
+	}
+	public String getReteta() {
+		return reteta;
+	}
+	public void setReteta(String reteta) {
+		this.reteta = reteta;
+	}
+	public String getOriginal() {
+		return original;
+	}
+	public void setOriginal(String original) {
+		this.original = original;
+	}
+	
+	
+
+}
+/*
+	//Conexiunea le DB
+	DB conex = DB.getInstance();
+	Connection con = conex.getConnection();
+	Document doc = null;
+*/
+	
+/*
 	// Conexiunea cu SITE-UL Nomenclator
 	public void conectareSiteNomenclator() {
 		try {
@@ -123,16 +226,18 @@ public class Medicament {
 		}
 
 	}
+*/
 
+/*
 	// Adaugare medicamente in DB de pe site NU MERGE ?
 	public List<Medicament> getDataFromSite() {
 
 		List<Medicament> medicament = new ArrayList<Medicament>();
 
 		Elements site = doc.select(".dxgvDataRow");
-
+		int id=0;
 		for (Element tabelMedicament : site) {
-
+			id++;
 			String nume = tabelMedicament.select("td:nth-child(1)").text();
 			String forma_farmaceutica = tabelMedicament.select("td:nth-child(2)").text();
 			String doza = tabelMedicament.select("td:nth-child(3)").text();
@@ -149,14 +254,17 @@ public class Medicament {
 
 			if (nume != null && !nume.trim().isEmpty()) {
 
-				medicament.add(new Medicament(nume, forma_farmaceutica, doza, volum, cantitate, substanta_activa,
+				medicament.add(new Medicament(id,nume, forma_farmaceutica, doza, volum, cantitate, substanta_activa,
 						cod_ATC, valabilitate, inregistrare, producator, tara, reteta, original));
 			}
 		}
 
 		return medicament;
 	}
+	
+*/
 
+/*
 	// Afisare medicamente din DB
 	public List<Medicament> getDateFromDB() throws SQLException {
 
@@ -167,8 +275,9 @@ public class Medicament {
 		System.out.println("Medicamente: ");
 
 		List<Medicament> medicamente = new ArrayList<Medicament>();
-
+		int id=0;
 		while (rs.next()) {
+			id++;
 			String nume1 = rs.getString("nume");
 			String forma_farmaceutica1 = rs.getString("forma_farmaceutica");
 			String doza1 = rs.getString("doza");
@@ -183,131 +292,11 @@ public class Medicament {
 			String reteta1 = rs.getString("reteta");
 			String original1 = rs.getString("original");
 
-			medicamente.add(new Medicament(nume1, forma_farmaceutica1, doza1, volum1, cantitate1, substanta_activa1,
+			medicamente.add(new Medicament(id,nume1, forma_farmaceutica1, doza1, volum1, cantitate1, substanta_activa1,
 					cod_ATC1, valabilitate1, inregistrare1, producator1, tara1, reteta1, original1));
 
 		}
 		return medicamente;
 	}
+*/
 
-	// Afisare medicamente
-	public void displayMedicamente(List<Medicament> medicamente) {
-		for (Medicament medicament : medicamente) {
-			System.out.println(medicament);
-		}
-	}
-
-	// La println se iau elementele automat toString si se afiseaza
-	public String toString() {
-		return this.nume1 + "[" + this.forma_farmaceutica1 + ", " + this.doza1 + ", " + this.volum1 + ", "
-				+ this.cantitate1 + ", " + this.substanta_activa1 + ", " + this.cod_ATC1 + ", " + this.valabilitate1
-				+ ", " + this.inregistrare1 + ", " + this.producator1 + ", " + this.tara1 + ", " + this.reteta1 + ", "
-				+ this.original1 + "]";
-
-	}
-
-	public String getNume1() {
-		return nume1;
-	}
-
-	public void setNume1(String nume1) {
-		this.nume1 = nume1;
-	}
-
-	public String getForma_farmaceutica1() {
-		return forma_farmaceutica1;
-	}
-
-	public void setForma_farmaceutica1(String forma_farmaceutica1) {
-		this.forma_farmaceutica1 = forma_farmaceutica1;
-	}
-
-	public String getDoza1() {
-		return doza1;
-	}
-
-	public void setDoza1(String doza1) {
-		this.doza1 = doza1;
-	}
-
-	public String getVolum1() {
-		return volum1;
-	}
-
-	public void setVolum1(String volum1) {
-		this.volum1 = volum1;
-	}
-
-	public String getCantitate1() {
-		return cantitate1;
-	}
-
-	public void setCantitate1(String cantitate1) {
-		this.cantitate1 = cantitate1;
-	}
-
-	public String getSubstanta_activa1() {
-		return substanta_activa1;
-	}
-
-	public void setSubstanta_activa1(String substanta_activa1) {
-		this.substanta_activa1 = substanta_activa1;
-	}
-
-	public String getCod_ATC1() {
-		return cod_ATC1;
-	}
-
-	public void setCod_ATC1(String cod_ATC1) {
-		this.cod_ATC1 = cod_ATC1;
-	}
-
-	public String getValabilitate1() {
-		return valabilitate1;
-	}
-
-	public void setValabilitate1(String valabilitate1) {
-		this.valabilitate1 = valabilitate1;
-	}
-
-	public String getInregistrare1() {
-		return inregistrare1;
-	}
-
-	public void setInregistrare1(String inregistrare1) {
-		this.inregistrare1 = inregistrare1;
-	}
-
-	public String getProducator1() {
-		return producator1;
-	}
-
-	public void setProducator1(String producator1) {
-		this.producator1 = producator1;
-	}
-
-	public String getTara1() {
-		return tara1;
-	}
-
-	public void setTara1(String tara1) {
-		this.tara1 = tara1;
-	}
-
-	public String getReteta1() {
-		return reteta1;
-	}
-
-	public void setReteta1(String reteta1) {
-		this.reteta1 = reteta1;
-	}
-
-	public String getOriginal1() {
-		return original1;
-	}
-
-	public void setOriginal1(String original1) {
-		this.original1 = original1;
-	}
-
-}

@@ -1,32 +1,33 @@
 package ro.raluca.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ro.raluca.DB.DB;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Entity
 public class Farmacie {
-
-	// Conexiunea cu DB
-	DB conex = DB.getInstance();
-	Connection con = conex.getConnection();
-
-	// DECLARERE VARIABILE
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_farmacie;
 	private int CUI;
-	private String nume;
+	private String nume_farmacie;
 	private String site;
+	//@Column(name="nume_farmacie") +import javax.persistence.Column;  daca sunt denumite diferit col din tabel cu cele din clasa
+
 
 	public Farmacie() {
 	}
 
 	// Constructor cu parametrii
-	public Farmacie(int id_farmacie,int CUI2, String nume2, String site2) {
+	public Farmacie(int id_farmacie, int CUI2, String nume2, String site2) {
 		this.id_farmacie = id_farmacie;
 		this.CUI = CUI2;
-		this.nume = nume2;
+		this.nume_farmacie = nume2;
 		this.site = site2;
 	}
 
@@ -44,10 +45,10 @@ public class Farmacie {
 		CUI = cUI;
 	}
 	public String getNume() {
-		return nume;
+		return nume_farmacie;
 	}
 	public void setNume(String nume) {
-		this.nume = nume;
+		this.nume_farmacie = nume;
 	}
 	public String getSite() {
 		return site;
@@ -55,24 +56,30 @@ public class Farmacie {
 	public void setSite(String site) {
 		this.site = site;
 	}
+}
+	
+	// Conexiunea cu DB
+//	DB conex = DB.getInstance();
+//	Connection con = conex.getConnection();
 
 	// Afisare din DB
-	public void getDataFromFarmacie() throws SQLException {
-		Statement st = con.createStatement();
-		String query = "SELECT * FROM Farmacie";
-		ResultSet rs = st.executeQuery(query);
-
-		System.out.println("Farmacie: ");
-
-		while (rs.next()) {
-			CUI = rs.getInt("CUI");
-			nume = rs.getString("nume_farmacie");
-			site = rs.getString("site");
-
-			System.out.println("id_farmacie" + id_farmacie + " CUI: " + CUI + " Nume:  " + nume + "site:  " + site);
-		}
-
-	}
+//	public void getDataFromFarmacie() throws SQLException {
+//		Statement st = con.createStatement();
+//		String query = "SELECT * FROM Farmacie";
+//		ResultSet rs = st.executeQuery(query);
+//
+//		System.out.println("Farmacie: ");
+//
+//		while (rs.next()) {
+//			id_farmacie = rs.getInt("id_farmacie");
+//			CUI = rs.getInt("CUI");
+//			nume = rs.getString("nume_farmacie");
+//			site = rs.getString("site");
+//
+//			System.out.println("id_farmacie: " + id_farmacie + " CUI: " + CUI + " Nume:  " + nume + "site:  " + site);
+//		}
+//
+//	}
 	// Procedura Stocata
 	/*
 	 * public void SediileUneiFarmacii(String farmacie) throws SQLException {
@@ -90,7 +97,3 @@ public class Farmacie {
 	 * System.out.println(); } }
 	 */
 
-
-
-
-}

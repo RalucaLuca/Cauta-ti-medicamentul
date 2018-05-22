@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import ro.raluca.model.Farmacie;
 import ro.raluca.model.Medicament;
-import ro.raluca.model.SediuFarmacie;
+import ro.raluca.model.Sediu_Farmacie;
 
 @SpringBootApplication // initializaeza si porneste spring boot
 @ServletComponentScan(basePackages={"ro.raluca"})
@@ -19,16 +19,16 @@ public class App
     public static void main( String[] args ) throws SQLException
     {
     	       // Afisare farmacii
-    			Farmacie conexiuneFarmacii = new Farmacie();
-    			conexiuneFarmacii.getDataFromFarmacie();
+//    			Farmacie conexiuneFarmacii = new Farmacie();
+//    			conexiuneFarmacii.getDataFromFarmacie();
     			System.out.println();
 
     			// Afisare sediile unei farmacii
     			// conex_farmacii.SediileUneiFarmacii("catena");
 
     			// AFISARE SEDIU_FARMACIE
-    			SediuFarmacie conexiuneSediiFarmacie = new SediuFarmacie();
-    			conexiuneSediiFarmacie.getDataFromSediuFarmacie();
+//    			SediuFarmacie conexiuneSediiFarmacie = new SediuFarmacie();
+//    			conexiuneSediiFarmacie.getDataFromSediuFarmacie();
     			System.out.println();
 //
 //    			Medicament conexiuneMedicamente = new Medicament();

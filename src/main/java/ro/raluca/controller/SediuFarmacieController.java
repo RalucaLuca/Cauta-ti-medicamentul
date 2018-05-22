@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ro.raluca.model.Farmacie;
-import ro.raluca.service.AutentificationRepositoryFarm;
+import ro.raluca.model.Sediu_Farmacie;
+import ro.raluca.service.AutentificationRepositorySedii;
 
 @RestController
-@RequestMapping("/farmacie")
-public class FarmacieController {
+@RequestMapping("/sediu")
+public class SediuFarmacieController {
 	
 	@Autowired
-	private AutentificationRepositoryFarm autentificareRepository;
+	private AutentificationRepositorySedii autentificareRepository;
 	
 	@RequestMapping("/")
-	public Farmacie Home() {
+	public Sediu_Farmacie Home() {
 		// TODO Auto-generated method stub
-		Farmacie connex = new Farmacie();		
+		Sediu_Farmacie connex = new Sediu_Farmacie();		
 		return connex;
 	}
 	
-	@GetMapping("/{id_farmacie}")
-	public Farmacie get(@PathVariable("id_farmacie") Integer id_farmacie) {
-		return autentificareRepository.getOne(id_farmacie);
+	@GetMapping("/{id_sediu}")
+	public Sediu_Farmacie get(@PathVariable("id_sediu") Integer id_sediu) {
+		return autentificareRepository.getOne(id_sediu);
 	}
 }
