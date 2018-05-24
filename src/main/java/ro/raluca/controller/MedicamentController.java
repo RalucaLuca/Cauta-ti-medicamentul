@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ro.raluca.model.Medicament;
-import ro.raluca.service.AutentificationRepositoryMed;
+import ro.raluca.repository.MedicamentRepository;
 
 @RestController
 @RequestMapping("/medicament")
 public class MedicamentController {
 	
 	@Autowired
-	private AutentificationRepositoryMed autentificareRepository;
+	private MedicamentRepository autentificareRepository;
 	
 	@RequestMapping("/")
 	public Medicament Home() {
