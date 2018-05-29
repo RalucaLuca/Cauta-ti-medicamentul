@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import ro.raluca.model.Farmacie;
-import ro.raluca.repository.FarmacieRepository;
+import ro.raluca.repository.FarmacieJpaRepository;
 
 @RestController
 @RequestMapping("/farmacie")
 public class FarmacieController {
 	
 	@Autowired
-	private FarmacieRepository farmacieRepository;
+	private FarmacieJpaRepository farmacieJpaRepository;
 	
 	@RequestMapping("/")
 	public Farmacie Home() {
@@ -26,13 +25,8 @@ public class FarmacieController {
 		return connex;
 	}
 	
-	@GetMapping("/{id_farmacie}")
-	public List<Farmacie> get(@PathVariable("id_farmacie") Integer id_farmacie) {
-		return farmacieRepository.getFarmacieById(id_farmacie);
+	@GetMapping("/{nume_farmacie}")
+	public Farmacie get(@PathVariable("nume_farmacie") String nume_farmacie) {
+		return farmacieJpaRepository.findFirstByNumeIgnoreCaseStartingWith(nume_farmacie);
 	}
-	
-//	@GetMapping("/{nume_farmacie}")
-//	public List<Farmacie> get(@PathVariable("nume_farmacie") String nume_farmacie) {
-//		return farmacieRepository.getFarmacieByName(nume_farmacie);
-//	}
 }

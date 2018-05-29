@@ -1,11 +1,9 @@
 package ro.raluca.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -18,16 +16,22 @@ public class SediuFarmacie {
 	private String adresa;
 	private String telefon;
 	private String judet;
+	
 
+	private int id_farmacie;
+	
 	public SediuFarmacie() {
 	}
+	
 
-	public SediuFarmacie(int id_sediu2, String adresa2, String telefon2, String judet2) {
+	public SediuFarmacie(int id_sediu2, String adresa2, String telefon2, String judet2, int id_farmacie) {
 		this.id_sediu = id_sediu2;
 		this.adresa = adresa2;
 		this.telefon = telefon2;
 		this.judet = judet2;
+		this.id_farmacie = id_farmacie;
 	}
+	
 
 	public int getId_sediu() {
 		return id_sediu;
@@ -52,5 +56,11 @@ public class SediuFarmacie {
 	}
 	public void setJudet(String judet) {
 		this.judet = judet;
+	}
+	public int getId_farmacie() {
+		return id_farmacie;
+	}
+	public void setId_farmacie(int id_farmacie) {
+		this.id_farmacie = id_farmacie;
 	}
 }
