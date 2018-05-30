@@ -14,11 +14,11 @@ public class Medicament {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_medicament;
 	private String nume;
-	private String forma_farmaceutica;
+	private String formaFarmaceutica;
 	private String doza;
 	private String volum;
 	private String cantitate;
-	private String substanta_activa;
+	private String substantaActiva;
 	private String codATC;
 	private String valabilitate;
 	private String inregistrare;
@@ -37,11 +37,11 @@ public class Medicament {
 			String tara2, String reteta2, String original2) {
 		this.id_medicament=id_medicament;
 		this.nume = nume2;
-		this.forma_farmaceutica = forma_farmaceutica2;
+		this.formaFarmaceutica = forma_farmaceutica2;
 		this.doza = doza2;
 		this.volum = volum2;
 		this.cantitate = cantitate2;
-		this.substanta_activa = substanta_activa2;
+		this.substantaActiva = substanta_activa2;
 		this.codATC = cod_ATC2;
 		this.valabilitate = valabilitate2;
 		this.inregistrare = inregistrare2;
@@ -60,8 +60,8 @@ public class Medicament {
 
 	// La println se iau elementele automat toString si se afiseaza
 	public String toString() {
-		return this.id_medicament + "[" + this.nume + "[" + this.forma_farmaceutica + ", " + this.doza + ", " + this.volum + ", "
-				+ this.cantitate + ", " + this.substanta_activa + ", " + this.codATC + ", " + this.valabilitate
+		return this.id_medicament + "[" + this.nume + "[" + this.formaFarmaceutica + ", " + this.doza + ", " + this.volum + ", "
+				+ this.cantitate + ", " + this.substantaActiva + ", " + this.codATC + ", " + this.valabilitate
 				+ ", " + this.inregistrare + ", " + this.producator + ", " + this.tara + ", " + this.reteta + ", "
 				+ this.original + "]";
 	}
@@ -78,11 +78,11 @@ public class Medicament {
 	public void setNume(String nume) {
 		this.nume = nume;
 	}
-	public String getForma_farmaceutica() {
-		return forma_farmaceutica;
+	public String getFormaFarmaceutica() {
+		return formaFarmaceutica;
 	}
-	public void setForma_farmaceutica(String forma_farmaceutica) {
-		this.forma_farmaceutica = forma_farmaceutica;
+	public void setFormaFarmaceutica(String forma_farmaceutica) {
+		this.formaFarmaceutica = forma_farmaceutica;
 	}
 	public String getDoza() {
 		return doza;
@@ -102,11 +102,11 @@ public class Medicament {
 	public void setCantitate(String cantitate) {
 		this.cantitate = cantitate;
 	}
-	public String getSubstanta_activa() {
-		return substanta_activa;
+	public String getSubstantaActiva() {
+		return substantaActiva;
 	}
-	public void setSubstanta_activa(String substanta_activa) {
-		this.substanta_activa = substanta_activa;
+	public void setSubstantaActiva(String substanta_activa) {
+		this.substantaActiva = substanta_activa;
 	}
 	public String getCodATC() {
 		return codATC;

@@ -25,8 +25,20 @@ public class FarmacieController {
 		return connex;
 	}
 	
-	@GetMapping("/{nume_farmacie}")
-	public Farmacie get(@PathVariable("nume_farmacie") String nume_farmacie) {
+	//@GetMapping("/getFarmacieByNume/{nume_farmacie}") --> calea pe localhost nume_farmacie este numele atributului din tabel
+	@GetMapping("/getListaFarmacii") // Lista farmaciilor cu toate datele + sediile acestora
+	public List<Farmacie> getListaFarmaciiSiSedii() {
+		return farmacieJpaRepository.findAll();
+	}
+	
+	@GetMapping("/getFarmacieByNume/{nume_farmacie}")  //informatii despre farmacie + sediile acesteia ; nu trebuie sa fie scris numele intreg
+	public Farmacie getFarmacieByNume(@PathVariable("nume_farmacie") String nume_farmacie) {
 		return farmacieJpaRepository.findFirstByNumeIgnoreCaseStartingWith(nume_farmacie);
 	}
+	
+	@GetMapping("/getFarmacieByCui/{CUI}") ////informatii despre farmacia care are CUI-ul respectiv + sediile acesteia
+	public Farmacie getFarmacieByCui(@PathVariable("CUI") Integer cui) {
+		return farmacieJpaRepository.findFirstByCui(cui);
+	}
+	
 }

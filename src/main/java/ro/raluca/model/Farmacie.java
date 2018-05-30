@@ -20,19 +20,20 @@ public class Farmacie {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_farmacie;
+	@Column(name="id_farmacie")
+	private int idFarmacie;	
 	
-	private int CUI;
+	@Column(name="CUI")
+	private int cui;
 	
 	@Column(name="nume_farmacie", columnDefinition = "TEXT")
 	private String nume;
 	
 	@Column(columnDefinition = "TEXT")
 	private String site;
-	//@Column(name="nume_farmacie") +import javax.persistence.Column;  daca sunt denumite diferit col din tabel cu cele din clasa
-
-	@OneToMany(cascade=CascadeType.ALL)	
-	@JoinColumn(name="id_farmacie")	
+	
+	@OneToMany(cascade=CascadeType.ALL)	 // Tipul legaturii dintre tabele
+	@JoinColumn(name="id_farmacie")	     // variabila de legatura intre tabelul Farmacie si SediuFarmacie
 	private List<SediuFarmacie> sediuFarmacie = new ArrayList<SediuFarmacie>();
 
 	@SuppressWarnings("unused")
@@ -41,7 +42,7 @@ public class Farmacie {
 
 	// Constructor cu parametrii
 	public Farmacie( int CUI2, String nume2, String site2) {
-		this.CUI = CUI2;
+		this.cui = CUI2;
 		this.nume = nume2;
 		this.site = site2;
 	}
@@ -54,17 +55,17 @@ public class Farmacie {
 	public void setSediuFarmacie(List<SediuFarmacie> sediuFarmacie) {		
 		this.sediuFarmacie= sediuFarmacie;
 	}
-	public int getId_farmacie() {
-		return id_farmacie;
+	public int getIdFarmacie() {
+		return idFarmacie;
 	}
-	public void setId_farmacie(int id_farmacie) {
-		this.id_farmacie = id_farmacie;
+	public void setIdFarmacie(int id_farmacie) {
+		this.idFarmacie = id_farmacie;
 	}
-	public int getCUI() {
-		return CUI;
+	public int getCui() {
+		return cui;
 	}
-	public void setCUI(int cUI) {
-		CUI = cUI;
+	public void setCui(int cUI) {
+		cui = cUI;
 	}
 	public String getNume() {
 		return nume;

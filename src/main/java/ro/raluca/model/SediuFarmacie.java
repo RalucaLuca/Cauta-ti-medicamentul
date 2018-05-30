@@ -1,5 +1,6 @@
 package ro.raluca.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,32 +13,33 @@ public class SediuFarmacie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_sediu;	 	//@Column(name="cod_sediu") + import javax.persistence.Column; daca sunt denumite diferit col din tabel cu cele din clasa
+	@Column(name="id_sediu")    // daca sunt denumite diferit col din tabel cu cele din clasa
+	private int idSediu;
+	
 	private String adresa;
 	private String telefon;
 	private String judet;
 	
-
-	private int id_farmacie;
+	@Column(name="id_farmacie")
+	private int idFarmacie;
 	
 	public SediuFarmacie() {
 	}
 	
 
 	public SediuFarmacie(int id_sediu2, String adresa2, String telefon2, String judet2, int id_farmacie) {
-		this.id_sediu = id_sediu2;
+		this.idSediu = id_sediu2;
 		this.adresa = adresa2;
 		this.telefon = telefon2;
 		this.judet = judet2;
-		this.id_farmacie = id_farmacie;
+		this.idFarmacie = id_farmacie;
 	}
 	
-
-	public int getId_sediu() {
-		return id_sediu;
+	public int getIdSediu() {
+		return idSediu;
 	}
-	public void setId_sediu(int id_sediu) {
-		this.id_sediu = id_sediu;
+	public void setIdSediu(int id_sediu) {
+		this.idSediu = id_sediu;
 	}
 	public String getAdresa() {
 		return adresa;
@@ -57,10 +59,10 @@ public class SediuFarmacie {
 	public void setJudet(String judet) {
 		this.judet = judet;
 	}
-	public int getId_farmacie() {
-		return id_farmacie;
+	public int getIdFarmacie() {
+		return idFarmacie;
 	}
-	public void setId_farmacie(int id_farmacie) {
-		this.id_farmacie = id_farmacie;
+	public void setIdFarmacie(int id_farmacie) {
+		this.idFarmacie = id_farmacie;
 	}
 }
