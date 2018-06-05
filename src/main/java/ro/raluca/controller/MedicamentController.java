@@ -20,13 +20,18 @@ public class MedicamentController {
 	
 	@RequestMapping("/")
 	public Medicament Home() {
-		// TODO Auto-generated method stub
 		Medicament connex = new Medicament();		
 		return connex;
 	}
 	
-	@GetMapping("/getLista")
-	public List<Medicament> getLista() {
+	// Lista medicamentelor
+	@GetMapping("/getLista") 
+	public List<String> getLista() {
+		return medicamentJpaRepository.getListaMedicamente();
+	}
+	
+	@GetMapping("/getListaMedicamente")
+	public List<Medicament> getListaMedicamente() {
 		return medicamentJpaRepository.findAll();
 	}
 	
@@ -35,8 +40,8 @@ public class MedicamentController {
 		return medicamentJpaRepository.findByNumeIgnoreCaseStartingWith(nume);
 	}
 	
-	@GetMapping("/getListaBySubstanta/{substanatActiva}")
-	public List<Medicament> getListaBySubstanta(@PathVariable("substanta_activa") String substantaActiva) {
-		return medicamentJpaRepository.findBySubstantaActivaNot(substantaActiva);
+	@GetMapping("/getListaBySubstanta/{substantaActiva}")
+	public List<Medicament> getListaBySubstanta(@PathVariable("substantaActiva") String substanta_activa) {
+		return medicamentJpaRepository.findBySubstantaActivaIgnoreCaseStartingWith(substanta_activa);
 	}
 }

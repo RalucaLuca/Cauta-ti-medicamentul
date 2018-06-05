@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 public class MetodeMedicament extends Medicament {
 
-	Document doc = null;
+	
 	
 	// Conexiunea cu SITE-UL Nomenclator
 	public void conectareSiteNomenclator() {
@@ -22,7 +22,7 @@ public class MetodeMedicament extends Medicament {
 			org.jsoup.nodes.Element viewState = prepDoc.select("input[name=__VIEWSTATE]").first();
 			org.jsoup.nodes.Element viewStateGen = prepDoc.select("input[name=__VIEWSTATEGENERATOR]").first();
 
-			doc = Jsoup.connect("http://nomenclator.amed.md/").data("__VIEWSTATE", viewState.attr("value"))
+			Document doc = Jsoup.connect("http://nomenclator.amed.md/").data("__VIEWSTATE", viewState.attr("value"))
 					.data("__VIEWSTATEGENERATOR", viewStateGen.attr("value"))
 					.data("__EVENTVALIDATION", eventValidation.attr("value"))
 					.data("__EVENTTARGET", "grid$StatusBar$PageSizeDropDownList")
@@ -33,42 +33,35 @@ public class MetodeMedicament extends Medicament {
 																					// tipul #grid_tcStatusBar ???
 
 			// numarul de elemente de pe o pagina
-			String lastRecordDisplayed = displayedRecords.substring(displayedRecords.indexOf("-") + 1, // +1 pt ca se
-																										// porneste
-																										// indexarea de
-																										// la 0
+			String lastRecordDisplayed = displayedRecords.substring(displayedRecords.indexOf("-") + 1, // +1 pt ca se porneste indexarea de la 0
 					displayedRecords.indexOf(" din")).trim(); // .trim - > se sterg toate spatiile (stanga, dreapta)
 
 			// Numarul maxim de elemente
-			String recordsCount = displayedRecords.substring(displayedRecords.indexOf(" din") + 4, // se ia in calcul si
-																									// " din" -> 4
-																									// caractere
+			String recordsCount = displayedRecords.substring(displayedRecords.indexOf(" din") + 4, // se ia in calcul si " din" -> 4 caractere
 					displayedRecords.indexOf("medicamente")).trim();
 
-			// while (lastRecordDisplayed != recordsCount) {
-			//
-			// lastRecordDisplayed=displayedRecords.substring(
-			// displayedRecords.indexOf("__CALLBACKID grid") + 1,
-			// displayedRecords.indexOf("__CALLBACKPARAM c0:GB|10;8|NEXTPAGE;")   
-			// ).trim();
-			//
-			// doc.body().appendTo(doc.body());
-			// // get next page
-			// //"__CALLBACKID grid)
-			// //"__CALLBACKPARAM c0:GB|10;8|NEXTPAGE;");
-			// // append next page's body to first page body
-			//
-			// }
-			//
-			// System.out.println();
-
-			// DE FACUT PENTRU FIECARE PAGINA!!!
-			// while lastRecordDisplayed != recordsCount
-			// get next page
-			// __CALLBACKID grid
-			// __CALLBACKPARAM c0:GB|10;8|NEXTPAGE;
-			// append next page's body to first page body
-			// doc.body().appendTo(doc.body());
+			//Schimbare pagina
+			 List<Medicament> medicamente = getDataFromSite(doc);
+			 
+//			 while (Integer.parseInt(lastRecordDisplayed) < Integer.parseInt(recordsCount)) {
+//				 doc = Jsoup.connect("http://nomenclator.amed.md/")
+//				    .data("__VIEWSTATE", viewState.attr("value"))
+//					.data("__VIEWSTATEGENERATOR", viewStateGen.attr("value"))
+//					.data("__EVENTVALIDATION", eventValidation.attr("value"))
+//					.data("__EVENTTARGET", "grid$StatusBar$PageSizeDropDownList")
+//					.data("grid$StatusBar$PageSizeDropDownList", "500") // Selecteaza 500 de medicamente pe pagina
+//				    .data("__CALLBACKID", "grid")
+//					.data("__CALLBACKPARAM", "c0:GB|10;8|NEXTPAGE;")
+//					.post();
+//				 
+//				  lastRecordDisplayed = displayedRecords.substring(displayedRecords.indexOf("-") + 1, // +1 pt ca se porneste indexarea de la 0
+//							displayedRecords.indexOf(" din")).trim(); // .trim - > se sterg toate spatiile (stanga, dreapta)
+//				  
+//				  getDataFromSite(doc);
+//				 
+//			 }
+			 
+			 System.out.println(medicamente);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,9 +69,8 @@ public class MetodeMedicament extends Medicament {
 
 	}
 
-
-	//Adaugare medicamente in DB de pe site NU MERGE ?
-	public List<Medicament> getDataFromSite() {
+	//Adaugare medicamente in DB de pe site NU MERGE !!
+	public List<Medicament> getDataFromSite(Document doc) {
 
 		List<Medicament> medicament = new ArrayList<Medicament>();
 
@@ -110,7 +102,6 @@ public class MetodeMedicament extends Medicament {
 		return medicament;
 	}
 }
-
 /*
 	// Afisare medicamente din DB
 	public List<Medicament> getDateFromDB() throws SQLException {

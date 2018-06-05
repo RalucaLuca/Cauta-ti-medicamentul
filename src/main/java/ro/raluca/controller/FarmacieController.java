@@ -13,32 +13,41 @@ import ro.raluca.repository.FarmacieJpaRepository;
 
 @RestController
 @RequestMapping("/farmacie")
-public class FarmacieController {
+public  class FarmacieController {
 	
 	@Autowired
 	private FarmacieJpaRepository farmacieJpaRepository;
 	
 	@RequestMapping("/")
 	public Farmacie Home() {
-		// TODO Auto-generated method stub
 		Farmacie connex = new Farmacie();		
 		return connex;
 	}
 	
-	//@GetMapping("/getFarmacieByNume/{nume_farmacie}") --> calea pe localhost nume_farmacie este numele atributului din tabel
-	@GetMapping("/getListaFarmacii") // Lista farmaciilor cu toate datele + sediile acestora
-	public List<Farmacie> getListaFarmaciiSiSedii() {
+	// Lista farmaciilor
+	@GetMapping("/getLista") 
+	public List<String> getLista() {
+		return farmacieJpaRepository.getListaFarmacii();
+	}
+	
+	// Lista farmaciilor cu toate datele + sediile acestora
+	@GetMapping("/getListaFarmacii")  // calea pe localhost nume_farmacie este numele atributului din tabel
+	public List<Farmacie> getListaFarmacii() {
 		return farmacieJpaRepository.findAll();
 	}
 	
-	@GetMapping("/getFarmacieByNume/{nume_farmacie}")  //informatii despre farmacie + sediile acesteia ; nu trebuie sa fie scris numele intreg
+	//Informatii despra farmaci cautata; numele nu trebuie sa fie scris in intregime
+	@GetMapping("/getFarmacieByNume/{nume_farmacie}")  
 	public Farmacie getFarmacieByNume(@PathVariable("nume_farmacie") String nume_farmacie) {
 		return farmacieJpaRepository.findFirstByNumeIgnoreCaseStartingWith(nume_farmacie);
 	}
 	
-	@GetMapping("/getFarmacieByCui/{CUI}") ////informatii despre farmacia care are CUI-ul respectiv + sediile acesteia
+	//Afisarea informatiilor despre farmacia care are CUI-ul respectiv
+	@GetMapping("/getFarmacieByCui/{CUI}") 
 	public Farmacie getFarmacieByCui(@PathVariable("CUI") Integer cui) {
 		return farmacieJpaRepository.findFirstByCui(cui);
 	}
+	
+
 	
 }

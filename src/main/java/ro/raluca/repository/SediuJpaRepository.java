@@ -11,10 +11,8 @@ public interface SediuJpaRepository extends JpaRepository <SediuFarmacie, Intege
 	
 	//Cautare dupa adresa
 	List<SediuFarmacie> findByAdresaIgnoreCaseStartingWith(String adresa);	
-//	SediuFarmacie findFirstByAdresaIgnoreCaseStartingWith(String adresa);	
-//	List<SediuFarmacie> findByAdresaNot(String adresa);
 	
-	//Cautare dupa id_farmacie
+	//Cautare dupa id
 	List<SediuFarmacie> findAllByIdFarmacieEquals(Integer id_farmacie);
 
 }

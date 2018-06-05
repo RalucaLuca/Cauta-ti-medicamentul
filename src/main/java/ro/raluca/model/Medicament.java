@@ -2,6 +2,7 @@ package ro.raluca.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +13,24 @@ public class Medicament {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_medicament;
+	@Column(name="id_medicament")
+	private int idMedicament;
+	
+	@Column(name="nume_medicament")
 	private String nume;
+	
+	@Column(name="forma_farmaceutica")
 	private String formaFarmaceutica;
 	private String doza;
 	private String volum;
 	private String cantitate;
+	
+	@Column(name="substanta_activa")
 	private String substantaActiva;
+	
+	@Column(name="cod_ATC")
 	private String codATC;
+	
 	private String valabilitate;
 	private String inregistrare;
 	private String producator;
@@ -35,7 +46,7 @@ public class Medicament {
 	public Medicament(int id_medicament,String nume2, String forma_farmaceutica2, String doza2, String volum2, String cantitate2,
 			String substanta_activa2, String cod_ATC2, String valabilitate2, String inregistrare2, String producator2,
 			String tara2, String reteta2, String original2) {
-		this.id_medicament=id_medicament;
+		this.idMedicament=id_medicament;
 		this.nume = nume2;
 		this.formaFarmaceutica = forma_farmaceutica2;
 		this.doza = doza2;
@@ -60,17 +71,17 @@ public class Medicament {
 
 	// La println se iau elementele automat toString si se afiseaza
 	public String toString() {
-		return this.id_medicament + "[" + this.nume + "[" + this.formaFarmaceutica + ", " + this.doza + ", " + this.volum + ", "
+		return this.idMedicament + "[" + this.nume + "[" + this.formaFarmaceutica + ", " + this.doza + ", " + this.volum + ", "
 				+ this.cantitate + ", " + this.substantaActiva + ", " + this.codATC + ", " + this.valabilitate
 				+ ", " + this.inregistrare + ", " + this.producator + ", " + this.tara + ", " + this.reteta + ", "
 				+ this.original + "]";
 	}
 
 	public int getId_medicament() {
-		return id_medicament;
+		return idMedicament;
 	}
 	public void setId_medicament(int id_medicament) {
-		this.id_medicament = id_medicament;
+		this.idMedicament = id_medicament;
 	}
 	public String getNume() {
 		return nume;
