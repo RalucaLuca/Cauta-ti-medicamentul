@@ -26,7 +26,6 @@ public class SediuFarmacie {
 	public SediuFarmacie() {
 	}
 	
-
 	public SediuFarmacie(int id_sediu2, String adresa2, String telefon2, String judet2, int id_farmacie) {
 		this.idSediu = id_sediu2;
 		this.adresa = adresa2;

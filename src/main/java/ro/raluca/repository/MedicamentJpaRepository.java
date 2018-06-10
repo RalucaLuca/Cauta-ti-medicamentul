@@ -18,4 +18,7 @@ public interface MedicamentJpaRepository extends JpaRepository<Medicament, Integ
 	
 	@Query("SELECT nume FROM Medicament")
 	List<String> getListaMedicamente();
+	
+	@Query("SELECT nume FROM Medicament WHERE nume_medicament = ?1")
+	List<Medicament> getListaMedicamante(String nume_medicament);
 }

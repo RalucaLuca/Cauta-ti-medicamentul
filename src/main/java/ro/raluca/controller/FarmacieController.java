@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ro.raluca.model.Farmacie;
+import ro.raluca.model.SediuFarmacie;
 import ro.raluca.repository.FarmacieJpaRepository;
 
 @RestController
 @RequestMapping("/farmacie")
-public  class FarmacieController {
+public class FarmacieController {
 	
 	@Autowired
 	private FarmacieJpaRepository farmacieJpaRepository;
@@ -34,6 +35,12 @@ public  class FarmacieController {
 	@GetMapping("/getListaFarmacii")  // calea pe localhost nume_farmacie este numele atributului din tabel
 	public List<Farmacie> getListaFarmacii() {
 		return farmacieJpaRepository.findAll();
+	}
+	
+	// Lista sediilor unei farmacii
+	@GetMapping("/getSedii/{nume_farmacie}")  
+	public List<SediuFarmacie> getSediiFarmacie(@PathVariable("nume_farmacie") String nume_farmacie) {
+		return farmacieJpaRepository.getListaSediiFarmacie(nume_farmacie);
 	}
 	
 	//Informatii despra farmaci cautata; numele nu trebuie sa fie scris in intregime

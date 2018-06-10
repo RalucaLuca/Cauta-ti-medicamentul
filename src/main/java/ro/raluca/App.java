@@ -1,7 +1,6 @@
 package ro.raluca;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import ro.raluca.model.Medicament;
 import ro.raluca.model.MetodeMedicament;
 
 @SpringBootApplication // initializaeza si porneste spring boot

@@ -30,16 +30,25 @@ public class MedicamentController {
 		return medicamentJpaRepository.getListaMedicamente();
 	}
 	
+	//Lista medicamentelor cu toate informatiile
 	@GetMapping("/getListaMedicamente")
 	public List<Medicament> getListaMedicamente() {
 		return medicamentJpaRepository.findAll();
 	}
 	
+	// Medicamentele cu acelasi nume
+	@GetMapping("/getMedicamente/{nume_medicament}")  
+	public List<Medicament> getMedicamente(@PathVariable("nume_medicament") String nume_medicament) {
+		return medicamentJpaRepository.getListaMedicamante(nume_medicament);
+	}
+	
+	//Medicamentul cautat ( medicamente)
 	@GetMapping("/getListaByNume/{nume}")
 	public List<Medicament> getListaByNume(@PathVariable("nume") String nume) {
 		return medicamentJpaRepository.findByNumeIgnoreCaseStartingWith(nume);
 	}
 	
+	//Lista medicamentelor cu o anumita substanta activa
 	@GetMapping("/getListaBySubstanta/{substantaActiva}")
 	public List<Medicament> getListaBySubstanta(@PathVariable("substantaActiva") String substanta_activa) {
 		return medicamentJpaRepository.findBySubstantaActivaIgnoreCaseStartingWith(substanta_activa);

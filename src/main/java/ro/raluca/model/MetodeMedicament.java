@@ -8,9 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
-public class MetodeMedicament extends Medicament {
-
-	
+public class MetodeMedicament extends Medicament {	
 	
 	// Conexiunea cu SITE-UL Nomenclator
 	public void conectareSiteNomenclator() {
