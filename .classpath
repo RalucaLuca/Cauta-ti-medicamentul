@@ -37,5 +37,8 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/jsoup-1.11.2-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/JDBC/sqljdbc_6.0/enu/jre8/sqljdbc42.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/eclipselink-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javax.persistence.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

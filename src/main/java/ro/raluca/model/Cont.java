@@ -3,8 +3,6 @@ package ro.raluca.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cont {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCont;
 	private String note;
 	private Date data;

@@ -2,8 +2,6 @@ package ro.raluca.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -12,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class SediuFarmacie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_sediu")    // daca sunt denumite diferit col din tabel cu cele din clasa
 	private int idSediu;
 	

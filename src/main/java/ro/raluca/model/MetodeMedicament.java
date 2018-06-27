@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
 public class MetodeMedicament extends Medicament {	
 	
-	// Conexiunea cu SITE-UL Nomenclator
+	// Conexiunea cu SITE-UL Nomenclator + Salvare in baza de date
 	public void conectareSiteNomenclator() {
 		try {
 			// Conectare la site-ul cu medicamente
@@ -26,7 +30,7 @@ public class MetodeMedicament extends Medicament {
 					.data("__EVENTTARGET", "grid$StatusBar$PageSizeDropDownList")
 					.data("grid$StatusBar$PageSizeDropDownList", "500") // Selecteaza 500 de medicamente pe pagina
 					.post();
-			// ???????? grid_tcStatusBar div
+			
 			String displayedRecords = doc.select("#grid_tcStatusBar div").text(); // selectam elementele din div de
 																					// tipul #grid_tcStatusBar ???
 
@@ -38,8 +42,7 @@ public class MetodeMedicament extends Medicament {
 			String recordsCount = displayedRecords.substring(displayedRecords.indexOf(" din") + 4, // se ia in calcul si " din" -> 4 caractere
 					displayedRecords.indexOf("medicamente")).trim();
 
-			//Schimbare pagina
-			 List<Medicament> medicamente = getDataFromSite(doc);
+			
 			 
 //			 while (Integer.parseInt(lastRecordDisplayed) < Integer.parseInt(recordsCount)) {
 //				 doc = Jsoup.connect("http://nomenclator.amed.md/")
@@ -58,8 +61,41 @@ public class MetodeMedicament extends Medicament {
 //				  getDataFromSite(doc);
 //				 
 //			 }
+
+			
+			//Se iau datele de pe site
+			 List<Medicament> medicamente = getDataFromSite(doc);
 			 
-			 System.out.println(medicamente);
+			 EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );		      
+		     EntityManager entitymanager = emfactory.createEntityManager( );
+		    		
+			 for (Medicament med : medicamente)
+			 {				
+				 Medicament unMedicamentNou = new Medicament();
+				 entitymanager.getTransaction( ).begin( );
+				 
+				 unMedicamentNou.setNume(med.getNume());
+				 unMedicamentNou.setFormaFarmaceutica(med.getFormaFarmaceutica());
+				 unMedicamentNou.setDoza(med.getDoza());
+				 unMedicamentNou.setVolum(med.getVolum());
+				 unMedicamentNou.setCantitate(med.getCantitate());
+				 unMedicamentNou.setSubstantaActiva(med.getSubstantaActiva());
+				 unMedicamentNou.setCodATC(med.getCodATC());
+				 unMedicamentNou.setValabilitate(med.getValabilitate());
+				 unMedicamentNou.setInregistrare(med.getInregistrare());
+				 unMedicamentNou.setProducator(med.getProducator());
+				 unMedicamentNou.setTara(med.getTara());
+				 unMedicamentNou.setReteta(med.getReteta());
+				 unMedicamentNou.setOriginal(med.getOriginal());
+			 	
+				 entitymanager.persist( unMedicamentNou );
+				 entitymanager.getTransaction().commit();
+				
+		}
+			
+			  entitymanager.close( );
+		      emfactory.close( );
+			 
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -67,15 +103,15 @@ public class MetodeMedicament extends Medicament {
 
 	}
 
-	//Adaugare medicamente in DB de pe site NU MERGE !!
+	//Adaugare medicamente in DB de pe site 
 	public List<Medicament> getDataFromSite(Document doc) {
 
 		List<Medicament> medicament = new ArrayList<Medicament>();
 
 		Elements site = doc.select(".dxgvDataRow");
-		int id=0;
+
 		for (Element tabelMedicament : site) {
-			id++;
+
 			String nume = tabelMedicament.select("td:nth-child(1)").text();
 			String forma_farmaceutica = tabelMedicament.select("td:nth-child(2)").text();
 			String doza = tabelMedicament.select("td:nth-child(3)").text();
@@ -92,7 +128,7 @@ public class MetodeMedicament extends Medicament {
 
 			if (nume != null && !nume.trim().isEmpty()) {
 
-				medicament.add(new Medicament(id,nume, forma_farmaceutica, doza, volum, cantitate, substanta_activa,
+				medicament.add(new Medicament(nume, forma_farmaceutica, doza, volum, cantitate, substanta_activa,
 						cod_ATC, valabilitate, inregistrare, producator, tara, reteta, original));
 			}
 		}
@@ -101,7 +137,7 @@ public class MetodeMedicament extends Medicament {
 	}
 }
 /*
-	// Afisare medicamente din DB
+	// Afisare medicamente din DB - metoda veche
 	public List<Medicament> getDateFromDB() throws SQLException {
 
 		Statement st = con.createStatement();

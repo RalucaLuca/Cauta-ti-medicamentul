@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import ro.raluca.model.MetodeMedicament;
-
 @SpringBootApplication // initializaeza si porneste spring boot
 @Configuration
 @EnableAutoConfiguration
@@ -24,11 +22,10 @@ import ro.raluca.model.MetodeMedicament;
 public class App {	
 	
     public static void main( String[] args ) throws SQLException {  	
-    	// AFISARE MEDICAMENTE DE PE SITE
-    	MetodeMedicament conexiuneMedicamente = new MetodeMedicament();
-		conexiuneMedicamente.conectareSiteNomenclator();
-//		List<Medicament> medicamenteFromSite = conexiuneMedicamente.getDataFromSite();
-//		conexiuneMedicamente.displayMedicamente(medicamenteFromSite);    
+    	// SALVARE MEDICAMENTE IN BAZA DE DATE
+    	//MetodeMedicament conexiuneMedicamente = new MetodeMedicament();
+		//conexiuneMedicamente.conectareSiteNomenclator();
+   
      	SpringApplication.run(App.class, args);       
     }
 }

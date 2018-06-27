@@ -53,4 +53,5 @@ public class MedicamentController {
 	public List<Medicament> getListaBySubstanta(@PathVariable("substantaActiva") String substanta_activa) {
 		return medicamentJpaRepository.findBySubstantaActivaIgnoreCaseStartingWith(substanta_activa);
 	}
+	
 }
